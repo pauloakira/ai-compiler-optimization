@@ -19,7 +19,7 @@ For example, in deep learning, a common optimization is to replace a sequence of
 ## 4. Backend
 The back end of the compiler translates the optimized IR into executable code tailored to the target hardware. This involves generating code that can run efficiently on CPUs, GPUs, TPUs, or other accelerators. The back end needs to take into account the specific characteristics of the hardware, such as memory hierarchies, vectorization capabilities, and parallel execution units.
 
-LLVM comes into play primarily in this stage. LLVM provides a powerful infrastructure for generating high-quality machine code for diverse architectures. A deep learning or linear algebra compiler can use LLVM as its back end, benefiting from LLVM's advanced code generation and optimization capabilities. LLVM's support for a wide range of architectures makes it an attractive choice for frameworks that aim to be portable across different types of hardware.
+LLVM comes into play primarily in this stage. LLVM (Low Level Virtual Machine) provides a powerful infrastructure for generating high-quality machine code for diverse architectures. A deep learning or linear algebra compiler can use LLVM as its back end, benefiting from LLVM's advanced code generation and optimization capabilities. LLVM's support for a wide range of architectures makes it an attractive choice for frameworks that aim to be portable across different types of hardware.
 
 LLVM's ecosystem includes tools and libraries that can be leveraged at different stages of the compiler pipeline for deep learning frameworks:
 
