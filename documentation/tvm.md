@@ -14,8 +14,14 @@ TVM is an open-source machine learning (ML) **compiler framework** that aims to 
 
 The TVM is primarily developed in C++ for its core components, ensuring efficient execution and flexibility in handling low-level operations. Alongside C++, TVM also heavily utilizes Python for its front-end interface, making it accessible and user-friendly for the machine learning community. Python is used for defining models, setting up compilation and optimization processes, and interfacing with different deep learning frameworks. The combination of C++ and Python leverages the strengths of both languages: C++ provides performance and efficiency critical for compiler operations and execution on various hardware, while Python offers ease of use, readability, and the ability to quickly integrate with other machine learning tools and libraries.
 
-![TVM Schema](../assets/tvm_overview.png)
-*TVM Schema Source: [TVM Documentation](https://tvm.apache.org/docs/tutorial/introduction.html)*
+<center><img src="../assets/tvm_overview.png" ...></center>
+<center>TVM Schema [Source: <a href="https://tvm.apache.org/docs/tutorial/introduction.html">TVM Documentation]</a></center>
+
+The following text was extracted from [TVM Documentation](https://tvm.apache.org/docs/tutorial/introduction.html):
+
+1. Import the model from a framework like Tensorflow, PyTorch, or Onnx. The importer layer is where TVM can ingest models from other frameworks, like Tensorflow, PyTorch, or ONNX. The level of support that TVM offers for each frontend varies as we are constantly improving the open source project. If you’re having issues importing your model into TVM, you may want to try converting it to ONNX.
+
+2. Translate to Relay, TVM’s high-level model language. A model that has been imported into TVM is represented in Relay. Relay is a functional language and intermediate representation (IR) for neural networks. 
 
 # How TVM uses LLVM?
 
