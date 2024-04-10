@@ -16,7 +16,7 @@ The TVM is primarily developed in C++ for its core components, ensuring efficien
 
 <center><img src="../assets/tvm_overview.png"></center>
 <center>TVM Schema [Source: <a href="https://tvm.apache.org/docs/tutorial/introduction.html">TVM Documentation]</a></center>
-<br>
+
 
 The following text was extracted from [TVM Documentation](https://tvm.apache.org/docs/tutorial/introduction.html):
 
