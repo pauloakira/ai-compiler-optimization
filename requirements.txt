@@ -13,10 +13,10 @@ hf_transfer
 transformers
 einops
 accelerate
-mlx
 word2number 
 fuzzywuzzy 
 python-Levenshtein
+mlx==0.9.1
 mlx-lm
 decorator==5.1.1
 psutil==5.9.8

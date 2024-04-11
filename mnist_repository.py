@@ -3,6 +3,7 @@ import os
 import gzip
 import pickle
 import numpy as np
+import mlx.core as mx
 from urllib import request
 
 filename = [
@@ -31,7 +32,7 @@ def download_and_save_mnist(filename):
         if 'images' in name[0]:
             # For image files
             with gzip.open(file_path, 'rb') as f:
-                mnist_data[name[0]] = np.frombuffer(f.read(), np.uint8, offset=16).reshape(-1, 28, 28)
+                mnist_data[name[0]] = np.frombuffer(f.read(), np.uint8, offset=16).reshape(-1, 28*28)
         else:
             # For label files
             with gzip.open(file_path, 'rb') as f:
@@ -58,8 +59,8 @@ def load_and_proc_mnist():
     mnist["training_labels"] = mnist["training_labels"].astype(np.uint32)
     mnist["test_labels"] = mnist["test_labels"].astype(np.uint32)
 
-    return mnist["training_images"], mnist["training_labels"], mnist["test_images"], mnist["test_labels"]
+    return mx.array(mnist["training_images"]), mx.array(mnist["training_labels"]), mx.array(mnist["test_images"]), mx.array(mnist["test_labels"])
 
 if __name__ == "__main__":
     download_and_save_mnist(filename)
-    mnist = load_and_proc_mnist()
+    X_train, y_train, X_test, y_test = load_and_proc_mnist()

@@ -1,5 +1,6 @@
 # Caching
 .pkl_memoize_py3
+__pycache__/
 
 # Data
 data/
