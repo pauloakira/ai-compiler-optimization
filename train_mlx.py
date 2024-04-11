@@ -75,4 +75,7 @@ if __name__ == "__main__":
         accuracy = eval_fn(model, test_images, test_labels)
         print(f"Epoch {epoch}: Test accuracy {accuracy.item():.3f}")
 
+    print("Training complete. Saving model...")
+    model.save_weights("assets/model.npz")
+    print("Model saved.")
     
