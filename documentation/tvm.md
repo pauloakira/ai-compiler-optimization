@@ -2,6 +2,8 @@
 
 TVM is an open-source machine learning (ML) **compiler framework** that aims to enable efficient deployment of deep learning models on various hardware platforms. It addresses a critical challenge in the field of deep learning: the diversity of hardware accelerators and the need for optimization to achieve high performance across different devices. TVM acts as both a compiler and an optimizer for deep learning models. Its primary role is to bridge the gap between the diverse world of deep learning frameworks and the wide array of hardware platforms available for deploying AI models.
 
+**IMPORTANT!** TVM primarily focuses on optimizing model inference rather than the training process. TVM is used to compile and optimize models for deployment, which typically involves inference tasks
+
 - **Hardware Agnostic**: TVM can target a broad range of hardware platforms, including CPUs, GPUs, TPUs, and specialized accelerators. It abstracts away the complexity of optimizing for different hardware, making it easier to deploy models across diverse devices.
 
 - **Framework Agnostic**: It provides compatibility with models from various deep learning frameworks, such as TensorFlow, PyTorch, MXNet, and Keras, by converting these models into its optimized intermediate representation (IR).
