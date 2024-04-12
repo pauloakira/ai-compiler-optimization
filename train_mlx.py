@@ -3,7 +3,6 @@ import mlx.core as mx
 import mlx.nn as nn
 import mlx.optimizers as optim
 import numpy as np
-import time
 
 # Custom libs
 import mnist_repository
