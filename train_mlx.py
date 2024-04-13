@@ -77,6 +77,6 @@ if __name__ == "__main__":
         print(f"Epoch {epoch}: Test accuracy {accuracy.item():.3f}")
 
     print("Training complete. Saving model...")
-    model.save_weights("assets/model.npz")
+    model.save_weights("assets/model_mlx.npz")
     print("Model saved.")
     

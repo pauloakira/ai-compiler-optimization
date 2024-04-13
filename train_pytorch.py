@@ -77,4 +77,4 @@ if __name__ == "__main__":
 
     # Save model weights to NPZ
     params_np = {k: v.cpu().detach().numpy() for k, v in model.state_dict().items()}
-    np.savez("model_pytorch.npz", **params_np)
+    np.savez("assets/model_pytorch.npz", **params_np)
