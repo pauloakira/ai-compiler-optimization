@@ -56,8 +56,8 @@ def load_and_proc_mnist():
     mnist["training_images"] = process_mnist(mnist["training_images"])
     mnist["test_images"] = process_mnist(mnist["test_images"])
     # Typecast the labels
-    mnist["training_labels"] = mnist["training_labels"].astype(np.uint32)
-    mnist["test_labels"] = mnist["test_labels"].astype(np.uint32)
+    mnist["training_labels"] = mnist["training_labels"].astype(np.int32)
+    mnist["test_labels"] = mnist["test_labels"].astype(np.int32)
 
     return mx.array(mnist["training_images"]), mx.array(mnist["training_labels"]), mx.array(mnist["test_images"]), mx.array(mnist["test_labels"])
 
