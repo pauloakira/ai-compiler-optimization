@@ -24,9 +24,8 @@ class MLP(nn.Module):
         x = self.flatten(x)
         logits = self.linear_relu_stack(x)
         return logits
-
-
-if __name__ == "__main__":
+    
+def mnistLoaders()-> DataLoader:
     try:
         train_images, train_labels, test_images, test_labels = mnist_repository.load_and_proc_mnist()
     except:
@@ -43,6 +42,14 @@ if __name__ == "__main__":
 
     train_loader = DataLoader(train_dataset, batch_size=256, shuffle=True)
     test_loader = DataLoader(test_dataset, batch_size=256, shuffle=False)
+
+    return train_loader, test_loader
+
+
+
+if __name__ == "__main__":
+    # Load the MNIST dataset
+    train_loader, test_loader = mnistLoaders()
 
     # Hyperparameters
     num_epochs = 10
