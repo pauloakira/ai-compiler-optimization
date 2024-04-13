@@ -82,6 +82,7 @@ if __name__ == "__main__":
             correct += (predicted == labels).sum().item()
         print(f"Accuracy: {100 * correct / total}%")
 
+
     # Save model weights to NPZ
     params_np = {k: v.cpu().detach().numpy() for k, v in model.state_dict().items()}
     np.savez("assets/model_pytorch.npz", **params_np)

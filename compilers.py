@@ -27,8 +27,6 @@ if __name__ == "__main__":
     # model.eval()
     # Use torch.jit.trace to convert the model to TorchScript
     scripted_model = torch.jit.trace(model, dummy_input)
-    print(scripted_model(dummy_input))
-    print(scripted_model.graph)
     mod, _ = relay.frontend.from_pytorch(scripted_model, shape_dict,  default_dtype="float32")
 
     # Set a target and compile the model
@@ -46,11 +44,10 @@ if __name__ == "__main__":
     for images, labels in test_loader:
         # Convert PyTorch tensor to numpy
         images_np = images.numpy()
-        print(f"Input shape: {images_np.shape[0]}")
         batch_size = images_np.shape[0]
         images_np = images.numpy().reshape(batch_size, 1, 28, 28)
 
-        # Set the input tensor and execute the model
+        # Set the input tensor and execute the model 
         module.set_input("x", tvm.nd.array(images_np))
         module.run()
 

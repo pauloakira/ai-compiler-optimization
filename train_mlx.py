@@ -73,8 +73,8 @@ if __name__ == "__main__":
             mx.eval(model.parameters(), optimizer.state)
         print(f"Epoch {epoch} loss: {loss}")
     
-        accuracy = eval_fn(model, test_images, test_labels)
-        print(f"Epoch {epoch}: Test accuracy {accuracy.item():.3f}")
+    accuracy = eval_fn(model, test_images, test_labels)
+    print(f"Test accuracy {100*accuracy.item():.3f}")
 
     print("Training complete. Saving model...")
     model.save_weights("assets/model_mlx.npz")
