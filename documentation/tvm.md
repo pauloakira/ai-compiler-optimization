@@ -55,7 +55,7 @@ Relay applies graph-level optimization passes to optimize the model.
 
 TVM can compile models down to a linkable object module, which can then be run with a lightweight TVM runtime that provides C APIs to dynamically load the model, and entry points for other languages such as Python and Rust. TVM can also build a bundled deployment in which the runtime is combined with the model in a single package.
 
-# How TVM uses LLVM?
+### How TVM uses LLVM?
 
 Once TVM has performed high-level optimizations on the deep learning model's computation graph and transformed it into a low-level intermediate representation (IR), it uses LLVM to generate efficient machine code for the target hardware platform. The main benefits of using the LLVM are:
 
@@ -65,3 +65,12 @@ Once TVM has performed high-level optimizations on the deep learning model's com
 
 TVM's integration with LLVM is a key factor in its ability to compile and optimize deep learning models for a broad range of hardware platforms efficiently. This collaboration allows TVM to focus on higher-level optimizations specific to machine learning workloads while relying on LLVM for general-purpose code generation and optimization capabilities.
 
+### Weight formats for PyTorch models: .pth vs. .npz
+
+Using .npz format to import weights may lead to performance and precision/accuracy issues. This may happen due to:
+
+1. Precision and Format Consistency: When saving to `.pth`, PyTorch preserves the exact data type and structure of each tensor. This includes any device-specific details (like whether the tensor is on CPU or GPU), and crucially, the data type (e.g., float32, float16). When loading these weights back, the integrity of each tensor is maintained.  When converting weights to .npz (which uses NumPy arrays), there can sometimes be unintentional data type conversions or precision losses, especially if not handled explicitly. For example, if tensors are not explicitly saved and loaded with the correct dtype in NumPy, they might undergo a conversion that affects model performance.
+
+2. Metadata and State: `.pth` files can store more than just weights; they can also store the entire model state, including optimizer state and even more nuanced model settings. This is particularly important for complex models where certain settings need to be preserved exactly to replicate performance. When using `.npz`, typically only the raw array data of the weights is saved. This means any additional metadata associated with how the model runs, such as running means and variances in batch normalization layers, are not preserved unless explicitly handled.
+
+3. Error Introduction During Manual Handling: When extracting weights and manually saving them into `.npz` files, there is a greater risk of introducing errors. This could be in the form of missing layers, incorrect ordering of weights, or incorrect reshaping when loading them back into a model. Reconstructing a model from manually handled weights (as when using `.npz`) requires exact knowledge of the model's architecture and correct assignment of weights to each layer. Any deviation or error in this manual process can lead to significant degradation in model performance.
