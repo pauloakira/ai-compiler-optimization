@@ -55,6 +55,8 @@ if __name__ == "__main__":
 
     model = MLP(num_layers, train_images.shape[-1], hidden_dim, num_classes)
     mx.eval(model.parameters())
+
+    print(f"Input dim: {train_images.shape[-1]}")
     
     # Get a function which gives the loss and gradient of the
     # loss with respect to the model's trainable parameters
