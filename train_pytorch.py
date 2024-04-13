@@ -41,7 +41,7 @@ def mnistLoaders()-> DataLoader:
     test_dataset = TensorDataset(test_images, test_labels)
 
     train_loader = DataLoader(train_dataset, batch_size=256, shuffle=True)
-    test_loader = DataLoader(test_dataset, batch_size=256, shuffle=False)
+    test_loader = DataLoader(test_dataset, batch_size=16, shuffle=False)
 
     return train_loader, test_loader
 

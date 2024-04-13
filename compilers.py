@@ -19,7 +19,7 @@ if __name__ == "__main__":
     params = {k: tvm.nd.array(v) for k, v in weight_dict.items()}
 
     # Prepare a dummy input for the conversion
-    dummy_input = torch.randn(256,1,28,28)
+    dummy_input = torch.randn(16,1,28,28)
     # Trace the model architecture using an untrained model
     shape_dict = [("x", dummy_input.shape)]
     print(shape_dict)
@@ -49,8 +49,6 @@ if __name__ == "__main__":
         print(f"Input shape: {images_np.shape[0]}")
         batch_size = images_np.shape[0]
         images_np = images.numpy().reshape(batch_size, 1, 28, 28)
-        if batch_size == 16:
-            break
 
         # Set the input tensor and execute the model
         module.set_input("x", tvm.nd.array(images_np))
