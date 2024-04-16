@@ -1,0 +1,5 @@
+# Open Neural Network Exchange (ONNX)
+
+ONNX, which stands for Open Neural Network Exchange, is an open-source format created to represent machine learning models. It was developed to facilitate model interoperability across different software frameworks, allowing models to be easily shared between platforms without locking users into a specific tool or library. It aims at providing a common language any machine learning framework can use to describe its models. The first scenario is to make it easier to deploy a machine learning model in production. An ONNX interpreter (or runtime) can be specifically implemented and optimized for this task in the environment where it is deployed. With ONNX, it is possible to build a unique process to deploy a model in production and independent from the learning framework used to build the model.
+
+The deployment of a machine-learned model into production usually requires replicating the entire ecosystem used to train the model, most of the time with a docker. Once a model is converted into ONNX, the production environment only needs a runtime to execute the graph defined with ONNX operators
