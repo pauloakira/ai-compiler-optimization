@@ -1,4 +1,5 @@
 # Caching
+.vscode
 .pkl_memoize_py3
 __pycache__/
 /dl_rust/target

@@ -49,3 +49,45 @@ cd python
 python setup.py install --user
 ```
 
+## Installing BLAS and Eigen for C++ with Homebrew
+
+1. Install BLAS using the brew command:
+
+```
+brew install openblas
+```
+
+Same thing for Eigen:
+
+```
+brew install eigen
+```
+
+2. Check the installation path:
+
+```
+brew info openblas
+```
+
+and for Eigen
+
+```
+brew info eigen
+```
+
+3. Compiling BLAS:
+
+```
+g++ -std=c++11 -o <filename> <filename>.cpp -L/opt/homebrew/opt/openblas/lib -I/opt/homebrew/opt/openblas/include -lopenblas
+```
+
+Compiling Eigen:
+
+```
+g++ -I /opt/homebrew/Cellar/eigen/3.4.0_1/include/eigen3 -o <filename> <filename>.cpp
+```
+
+4. Running the compiled file:
+```
+./<filename>
+```
