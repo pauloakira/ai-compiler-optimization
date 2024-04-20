@@ -1,33 +1,39 @@
-extern "C" {
-// LAPACK routine for solving systems of linear equations
-void dgesv_(int* n, int* nrhs, double* a, int* lda, int* ipiv,
-            double* b, int* ldb, int* info);
-}
-
+#include <Eigen/Dense>
 #include <iostream>
-#include <vector>
 
 int main() {
-    int n = 3; // Dimension of the matrix
-    int nrhs = 1; // Number of right-hand sides
-    int lda = 3; // Leading dimension of the matrix A
-    int ldb = 3; // Leading dimension of the matrix B
-    int info; // Output info
+    // Define two 3x3 matrices initialized with values
+    Eigen::Matrix3d matrixA;
+    Eigen::Matrix3d matrixB;
 
-    std::vector<int> ipiv(n, 0); // Pivot indices
-    std::vector<double> a = {3, 1, 2, 1, 2, 3, 3, 1, 4}; // Matrix A
-    std::vector<double> b = {1, 2, 3}; // Matrix B
+    matrixA << 1, 2, 3,
+               4, 5, 6,
+               7, 8, 9;
 
-    // Solve the linear equations A * X = B
-    dgesv_(&n, &nrhs, a.data(), &lda, ipiv.data(), b.data(), &ldb, &info);
+    matrixB << 9, 8, 7,
+               6, 5, 4,
+               3, 2, 1;
 
-    if (info == 0) {
-        for (int i = 0; i < n; i++) {
-            std::cout << "Solution [" << i << "] = " << b[i] << std::endl;
-        }
-    } else {
-        std::cout << "An error occurred: " << info << std::endl;
+    // Matrix addition
+    Eigen::Matrix3d sum = matrixA + matrixB;
+    std::cout << "Sum of matrixA and matrixB:\n" << sum << std::endl;
+
+    // Matrix multiplication
+    Eigen::Matrix3d prod = matrixA * matrixB;
+    std::cout << "Product of matrixA and matrixB:\n" << prod << std::endl;
+
+    // Solve linear system Ax = b
+    Eigen::Vector3d b(3, 3, 3);
+    Eigen::Vector3d x = matrixA.colPivHouseholderQr().solve(b);
+    std::cout << "Solution of Ax = b, x:\n" << x << std::endl;
+
+    // Compute eigenvalues
+    Eigen::EigenSolver<Eigen::Matrix3d> eigensolver(matrixA);
+    if (eigensolver.info() != Eigen::Success) {
+        std::cerr << "Eigenvalue computation failed!" << std::endl;
+        return 1;
     }
+    std::cout << "Eigenvalues of matrixA:\n" << eigensolver.eigenvalues() << std::endl;
 
     return 0;
 }
